@@ -1,9 +1,10 @@
 require 'artii'
 require 'colorize'
+require 'ruby-progressbar'
 
 input_name = true
 job_selection = true
-new_line = "\n"
+
 
 welcome = Artii::Base.new :font => 'slant'
 puts welcome.asciify('R a g n a r o k').colorize(:white)
@@ -19,31 +20,37 @@ end
 def green
     colorize(:green)
 end
-
-puts new_line
+def new_line
+    puts "\n"
+end
+new_line
 while input_name
     print "Plase enter name: "
     name = gets.chomp.to_s
     if name.length < 4 then puts "Please enter longer character name".red
     else
+        new_line
         puts "Welcome to Ragnarok #{name.blue}"
         break
     end
 end
-puts new_line
+new_line
 while job_selection
 print "Please Select Class Job | 1 = Swordsman | 2 = Acolyte | 3 = Archer : "
 job = gets.chomp.to_i
     if job == 1 
         job = 1 
+        new_line
         puts "Swordsman Selected".green
         break
     elsif job == 2
         job =2 
+        new_line
         puts "Acolyte Selected".green
         break
     elsif job == 3
         job = 3 
+        new_line
         puts "Archer Selected".green
         break
     else
@@ -51,3 +58,14 @@ job = gets.chomp.to_i
     end
         
 end
+new_line
+array = Array.new(1000)
+name = ProgressBar.create(:total =>array.size)
+#--Loading
+puts "Entering Ragnarok World"
+new_line
+array.each do |item|
+name.increment
+sleep 0.001
+end
+#--Loading
