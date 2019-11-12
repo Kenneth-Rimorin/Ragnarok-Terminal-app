@@ -10,6 +10,7 @@ $usable_item = {}
 $items = {dagger: "Combat Knife", armor: "Padded Armor"}
 
 
+
 welcome = Artii::Base.new :font => 'slant'
 puts welcome.asciify('R a g n a r o k').colorize(:white)
 puts "- -" * 23 
@@ -64,9 +65,7 @@ job = gets.chomp.to_i
     end
         
 end
-new_line
-array = Array.new(1000)
-name = ProgressBar.create(:total =>array.size)
+
 
 def stash 
     puts "-------INVENTORY------"
