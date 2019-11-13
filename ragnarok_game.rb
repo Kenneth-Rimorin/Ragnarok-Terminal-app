@@ -109,6 +109,11 @@ while dungeon
 print "KAFRA:".yellow + " Oh Thank you so much hero! use @warp to enter the dungeon : "
 enter_dungeon = gets.chomp.to_s
     if enter_dungeon == "@warp"
-        break
+    new_line
+    puts "Entering Prontera Dungeon Map"
+    new_line
+    name = ProgressBar.create(:total =>array.size)
+    array.each {name.increment;sleep 0.001}
+    break
     end
 end
