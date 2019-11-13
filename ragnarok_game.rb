@@ -5,6 +5,7 @@ require 'ruby-progressbar'
 input_name = true
 job_selection = true
 
+array = Array.new(1000)
 
 welcome = Artii::Base.new :font => 'slant'
 puts welcome.asciify('R a g n a r o k').colorize(:white)
@@ -21,8 +22,9 @@ def green
     colorize(:green)
 end
 def new_line
-    puts "\n"
+    puts "\n"   
 end
+
 new_line
 while input_name
     print "Plase enter name: "
@@ -59,13 +61,10 @@ job = gets.chomp.to_i
         
 end
 new_line
-array = Array.new(1000)
-name = ProgressBar.create(:total =>array.size)
-#--Loading
 puts "Entering Ragnarok World"
 new_line
-array.each do |item|
-name.increment
-sleep 0.001
-end
-#--Loading
+name = ProgressBar.create(:total =>array.size)
+array.each {name.increment;sleep 0.001}
+
+
+
