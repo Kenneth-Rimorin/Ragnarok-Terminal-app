@@ -5,6 +5,7 @@ require 'ruby-progressbar'
 
 input_name = true
 job_selection = true
+dungeon = true
 
 $usable_item = {}
 $items = {dagger: "Combat Knife", armor: "Padded Armor"}
@@ -30,7 +31,7 @@ def new_line
 end
 new_line
 while input_name
-    print "Plase enter name: "
+    print "Please enter name: "
     name = gets.chomp.to_s
     if name.length < 4 then puts "Please enter longer character name".red
     else
@@ -101,6 +102,13 @@ puts "KAFRA:".yellow + " Okay, now listen carefully. Our town is currently \n#{"
 enter=gets
 puts "KAFRA:".yellow + " Please help us hero, we need you!"
 enter=gets
-puts "#{$name}: Okay! i will do it and seal the dungeon"
+puts "#{$name}: Okay! i will do it and seal the dungeon."
 enter=gets
 
+while dungeon
+print "KAFRA:".yellow + " Oh Thank you so much hero! use @warp to enter the dungeon : "
+enter_dungeon = gets.chomp.to_s
+    if enter_dungeon == "@warp"
+        break
+    end
+end
