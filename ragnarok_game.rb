@@ -9,6 +9,11 @@ dungeon = true
 
 $usable_item = {}
 $items = {dagger: "Combat Knife", armor: "Padded Armor"}
+$monsters = [
+    {monster:"Ghoul", hp:7, dmg:2, lvl:1, exp:100 },
+    {monster:"Skeleton Archer", hp:9, dmg:2, lvl:3, exp:100 },
+    {monster:"Lord Baphomet", hp:20, dmg:4, lvl:5, exp:400 }
+]
 
 
 array = Array.new(1000)
@@ -29,6 +34,18 @@ end
 def new_line
     puts "\n"
 end
+
+def monster_view
+    puts "1 : #{$monsters[0][:monster].upcase}#{" "*10} - HP: #{$monsters[0][:hp]}#{" "*1} | Damage: #{$monsters[0][:dmg]} | Level: #{$monsters[0][:lvl]} | Experience: #{$monsters[0][:exp]}"
+    puts "2 : #{$monsters[1][:monster].upcase} - HP: #{$monsters[1][:hp]}#{" "*1} | Damage: #{$monsters[1][:dmg]} | Level: #{$monsters[1][:lvl]} | Experience: #{$monsters[1][:exp]}"
+    puts "3 : #{$monsters[2][:monster].upcase}#{" "*3}- HP: #{$monsters[2][:hp]} | Damage: #{$monsters[2][:dmg]} | Level: #{$monsters[2][:lvl]} | Experience: #{$monsters[2][:exp]}"
+    #puts "4 : #{$monsters[3][:monster].upcase}#{" "*3}- HP: #{$monsters[3][:hp]} | Damage: #{$monsters[3][:dmg]} | Level: #{$monsters[3][:lvl]} | Experience: #{$monsters[3][:exp]}"
+end
+def fight_display
+    fight = Artii::Base.new :font => 'slant'
+    puts fight.asciify('Fight!').colorize(:white)
+end
+
 new_line
 while input_name
     print "Please enter name: "
@@ -114,6 +131,13 @@ enter_dungeon = gets.chomp.to_s
     new_line
     name = ProgressBar.create(:total =>array.size)
     array.each {name.increment;sleep 0.001}
-    break
+    new_line
+    puts "LORD BAPHOMET: HOW DARE YOU ENTER MY LAIR HUMAN!".red
+    puts "LORD BAPHOMET: I AM BAPHOMET THE RULER OF THIS DUNGEON...".red
+    puts "LORD BAPHOMET: ATTTTAAAACCCCKKK!!!!!!!".red
+    enter=gets
+    puts "Dungeon Monsters "
+    new_line
+    puts monster_view
     end
 end
