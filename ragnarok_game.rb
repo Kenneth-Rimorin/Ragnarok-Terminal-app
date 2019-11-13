@@ -6,6 +6,7 @@ require 'ruby-progressbar'
 input_name = true
 job_selection = true
 dungeon = true
+fight = true
 
 $usable_item = {}
 $items = {dagger: "Combat Knife", armor: "Padded Armor"}
@@ -43,9 +44,8 @@ def monster_view
 end
 def fight_display
     fight = Artii::Base.new :font => 'slant'
-    puts fight.asciify('Fight!').colorize(:white)
+    puts fight.asciify('Fight-Time!').colorize(:white)
 end
-
 new_line
 while input_name
     print "Please enter name: "
@@ -139,5 +139,12 @@ enter_dungeon = gets.chomp.to_s
     puts "Dungeon Monsters "
     new_line
     puts monster_view
+    puts fight_display
+    puts "Ghoul: Too late for you Human! I'm gonna kill you now!".red
+    enter=gets
+        while fight
+        
+        
+        end
     end
 end
