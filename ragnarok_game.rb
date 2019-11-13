@@ -10,7 +10,7 @@ $usable_item = {}
 $items = {dagger: "Combat Knife", armor: "Padded Armor"}
 
 
-
+array = Array.new(1000)
 welcome = Artii::Base.new :font => 'slant'
 puts welcome.asciify('R a g n a r o k').colorize(:white)
 puts "- -" * 23 
@@ -83,12 +83,11 @@ def usable
 end
 
 #--Loading
+new_line
 puts "Entering Ragnarok World"
 new_line
-array.each do |item|
-name.increment
-sleep 0.001
-end
+name = ProgressBar.create(:total =>array.size)
+array.each {name.increment;sleep 0.001}
 #--Loading
 new_line
 puts "KAFRA".yellow  + ": Hello Hero! I'am Kafra, the Town Guardian before  \n#{" "*7}you begin your adventure please take this apples \n#{" "*6} and use it to restore your hit point."
