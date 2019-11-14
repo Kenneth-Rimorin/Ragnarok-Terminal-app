@@ -1,8 +1,10 @@
+#---RUBY GEMS----#
 require 'artii'
 require 'colorize'
 require 'ruby-progressbar'
+#---RUBY GEMS----#
 
-
+#---VARIABLES----#
 input_name = true
 job_selection = true
 dungeon = true
@@ -10,7 +12,10 @@ fight = true
 battle_sword = true
 battle_aco = true
 battle_arch = true
+first_battle = true
+#---VARIABLES----#
 
+#---HASHES----#
 $swordsman_skill = {bash:1, magnum_break:3}
 $acolyte_skill = {holy_light:1, magnus:2}
 $archer_skill = {doube_strafe:1, charge_arrow:2}
@@ -22,7 +27,7 @@ $monsters = [
     {monster:"Skeleton Archer", hp:9, dmg:2, lvl:3, exp:100 },
     {monster:"Lord Baphomet", hp:20, dmg:4, lvl:5, exp:400 }
 ]
-
+#---HASHES----#
 
 array = Array.new(1000)
 welcome = Artii::Base.new :font => 'slant'
@@ -150,7 +155,7 @@ enter_dungeon = gets.chomp.to_s
     puts fight_display
     puts "Ghoul: Too late for you Human! I'm gonna kill you now!".red
     enter=gets
-        while fight
+        while first_battle
             print "Battle Mode: 1 = Attack : "
             battle = gets.chomp.to_i
             if battle == 1 and job == 1
@@ -181,26 +186,56 @@ enter_dungeon = gets.chomp.to_s
                         puts "Player recieved damaged".green
                         $player[:hp] = $player[:hp] - $monsters[0][:dmg]
                         else
-                                battle_sword = false
+                                break
                         end    
 
                         if $player[:hp] <= 0
                             puts "Player Died"
                             puts defeat
-                            battle_sword = false
-                            fight = false
-                            second_battle = false
-                            last_battle = false
-                            dungeon = false
+                            break
                         end
 
                 end
+            elsif battle == 1 and job == 2
                 while battle_aco
+                new_line
+                puts "Ghoul HP: " + "#{$monsters[0][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                skill = gets.chomp.to_i
+                    if skill == 1
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:holy_light]
+                        new_line
+                    elsif skill == 2
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:magnus]
+                        new_line
+                    else
+                        new_line
+                        puts "No Skill Selected, You missed."
+                        new_line
+                    end
+                
+                    if $monsters[0][:hp] > 0
+                    puts "Ghoul: Take this human! Rotten Breathe!".red
+                    new_line
+                    puts "Player recieved damaged".green
+                    $player[:hp] = $player[:hp] - $monsters[0][:dmg]
+                    else
+                            break
+                    end    
+
+                    if $player[:hp] <= 0
+                        puts "Player Died"
+                        puts defeat
+                        break
+                    end
                 end
-                while battle_arch
-                end
+            
             end
+        end
         
         end
     end
-end
