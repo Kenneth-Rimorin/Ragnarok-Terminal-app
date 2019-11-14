@@ -233,7 +233,43 @@ enter_dungeon = gets.chomp.to_s
                         break
                     end
                 end
-            
+            elsif  battle == 1 and job == 3
+                while battle_arch
+                new_line
+                puts "Ghoul HP: " + "#{$monsters[0][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                skill = gets.chomp.to_i
+                    if skill == 1
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:doube_strafe]
+                        new_line
+                    elsif skill == 2
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:charge_arrow]
+                        new_line
+                    else
+                        new_line
+                        puts "No Skill Selected, You missed."
+                        new_line
+                    end
+                
+                    if $monsters[0][:hp] > 0
+                    puts "Ghoul: Take this human! Rotten Breathe!".red
+                    new_line
+                    puts "Player recieved damaged".green
+                    $player[:hp] = $player[:hp] - $monsters[0][:dmg]
+                    else
+                            break
+                    end    
+
+                    if $player[:hp] <= 0
+                        puts "Player Died"
+                        puts defeat
+                        break
+                    end
+                end    
             end
         end
         
