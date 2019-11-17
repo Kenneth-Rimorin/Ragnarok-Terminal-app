@@ -4,7 +4,7 @@ require 'colorize'
 require 'ruby-progressbar'
 #---RUBY GEMS----#
 
-#---VARIABLES----#
+#---VARIABLES BOOLEAN----#
 input_name = true
 job_selection = true
 dungeon = true
@@ -14,7 +14,9 @@ battle_aco = true
 battle_arch = true
 first_battle = true
 second_battle = true
+$inventory = true
 #---VARIABLES----#
+$firsthp = 12
 
 #---HASHES----#
 $swordsman_skill = {bash:1, magnum_break:3}
@@ -59,6 +61,11 @@ def fight_display
     fight = Artii::Base.new :font => 'slant'
     puts fight.asciify('Fight-Time!').colorize(:white)
 end
+def dungeon_art
+    fight = Artii::Base.new :font => 'slant'
+    puts fight.asciify('Protera Dungeon').colorize(:white)
+end
+
 def defeat
     defeat = Artii::Base.new :font => 'slant'
     puts defeat.asciify('Game Over').colorize(:white)
@@ -66,6 +73,26 @@ end
 def fir_stage
     victory = Artii::Base.new :font => 'slant'
     puts victory.asciify('FIRST WAVE CLEAR').colorize(:white)
+end
+def view_inventory
+    print "Warning! Player's hp is low use @items : ".magenta
+    open_inventory = gets.chomp
+    if open_inventory == "@items"
+        while $inventory
+        puts usable
+        print "Select which one you would like to use: close = close inventory: ".magenta
+        usable = gets.chomp.to_s
+            if usable == "apple" and $player[:hp] < $firsthp
+                $player[:hp] += 1
+                $usable_item[:apple] -= 1
+                puts "You've been healed current HP now is #{$player[:hp]}".green
+            elsif usable == "close"
+                $inventory = false
+                $warning = false
+            end    
+        end
+
+    end 
 end
 new_line
 while input_name
@@ -154,6 +181,9 @@ enter_dungeon = gets.chomp.to_s
     name = ProgressBar.create(:total =>array.size)
     array.each {name.increment;sleep 0.001}
     new_line
+    puts dungeon_art
+    new_line
+    enter=gets
     puts "LORD BAPHOMET: HOW DARE YOU ENTER MY LAIR HUMAN!".red
     puts "LORD BAPHOMET: I AM BAPHOMET THE RULER OF THIS DUNGEON...".red
     puts "LORD BAPHOMET: ATTTTAAAACCCCKKK!!!!!!!".red
@@ -322,6 +352,15 @@ enter_dungeon = gets.chomp.to_s
             end
 
         end ###----- End of first battle ----- ###
+
+        puts "Current hp is #{$player[:hp]}"
+
+        if $player[:hp] <=0
+            next
+        else
+            new_line
+            puts view_inventory
+        end
 
         while second_battle #----- Start second battle -----###
             puts "Skeleton Archer: My turn human, let me shower you with my arrows!".red
