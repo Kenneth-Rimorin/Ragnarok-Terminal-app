@@ -13,6 +13,7 @@ battle_sword = true
 battle_aco = true
 battle_arch = true
 first_battle = true
+second_battle = true
 #---VARIABLES----#
 
 #---HASHES----#
@@ -61,6 +62,10 @@ end
 def defeat
     defeat = Artii::Base.new :font => 'slant'
     puts defeat.asciify('Game Over').colorize(:white)
+end
+def fir_stage
+    victory = Artii::Base.new :font => 'slant'
+    puts victory.asciify('FIRST WAVE CLEAR').colorize(:white)
 end
 new_line
 while input_name
@@ -159,7 +164,7 @@ enter_dungeon = gets.chomp.to_s
     puts fight_display
     puts "Ghoul: Too late for you Human! I'm gonna kill you now!".red
     enter=gets
-        while first_battle
+        while first_battle #----First battle starts-----#
             print "Battle Mode: 1 = Attack : "
             battle = gets.chomp.to_i
             if battle == 1 and job == 1
@@ -281,6 +286,88 @@ enter_dungeon = gets.chomp.to_s
                     end
                 end    
             end
+
+            if $monsters[0][:hp] <= 0 
+                puts "Ghoul: Cursed you Human! Noooooo...".red
+                new_line
+                puts "Monster died"
+                new_line
+                puts "100% experience gained".green
+                puts "Apple x 5 Obtained".green
+                $usable_item[:apple] += 5
+                $player[:exp] += 100
+                fight = false
+            end
+
+            if $player[:exp] == 100
+                puts "LEVEL UP! Congratulations you are now level 2 ".green
+                puts "Hitpoint increased by 5".green
+                $player[:hp] += 5
+                first_battle = false
+                if job == 1
+                    puts "Bash & Magnum Break skills increased damage by 1".green
+                    $swordsman_skill[:bash] += 1
+                    $swordsman_skill[:magnum_break] += 1
+                elsif job == 2
+                    puts "Holy Light & Magnus skills increased damage by 1".green
+                    $acolyte_skill[:holy_light] += 1
+                    $acolyte_skill[:magnus] += 1
+                elsif job ==3
+                    puts "Double Strafe & Charge Arrow increased damage by 1".green
+                    $archer_skill[:doube_strafe] += 1
+                    $archer_skill[:charge_arrow] += 1
+                end
+                new_line
+                puts fir_stage
+            end
+
+        end ###----- End of first battle ----- ###
+
+        while second_battle #----- Start second battle -----###
+            puts "Skeleton Archer: My turn human, let me shower you with my arrows!".red
+            if battle == 1 and job == 1
+                while battle_sword
+                    new_line
+                    puts "Skeleton Archer HP: " + "#{$monsters[1][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                    print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                    skill = gets.chomp.to_i
+                        if skill == 1
+                            new_line
+                            puts "Monster received damaged".green
+                            $monsters[1][:hp] = $monsters[1][:hp] - $swordsman_skill[:bash]
+                            new_line
+                        elsif skill == 2
+                            new_line
+                            puts "Monster received damaged".green
+                            $monsters[1][:hp] = $monsters[1][:hp] - $swordsman_skill[:magnum_break]
+                            new_line
+                        else
+                            new_line
+                            puts "No Skill Selected, You missed."
+                            new_line
+                        end
+                    
+                        if $monsters[1][:hp] > 0
+                        puts "Skeleton Archer: Take this human! Rotten Breathe!".red
+                        new_line
+                        puts "Player recieved damaged".green
+                        $player[:hp] = $player[:hp] - $monsters[1][:dmg]
+                        else
+                                break
+                        end    
+
+                        if $player[:hp] <= 0
+                            puts "Player Died"
+                            puts defeat
+                            first_battle = false
+                            second_battle = false
+                            dungeon = false
+                            break
+                        end
+
+                end
+            end
+
         end
         
         end
