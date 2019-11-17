@@ -58,6 +58,10 @@ def fight_display
     fight = Artii::Base.new :font => 'slant'
     puts fight.asciify('Fight-Time!').colorize(:white)
 end
+def defeat
+    defeat = Artii::Base.new :font => 'slant'
+    puts defeat.asciify('Game Over').colorize(:white)
+end
 new_line
 while input_name
     print "Please enter name: "
@@ -192,6 +196,8 @@ enter_dungeon = gets.chomp.to_s
                         if $player[:hp] <= 0
                             puts "Player Died"
                             puts defeat
+                            first_battle = false
+                            dungeon = false
                             break
                         end
 
@@ -230,6 +236,8 @@ enter_dungeon = gets.chomp.to_s
                     if $player[:hp] <= 0
                         puts "Player Died"
                         puts defeat
+                        first_battle = false
+                        dungeon = false
                         break
                     end
                 end
@@ -267,6 +275,8 @@ enter_dungeon = gets.chomp.to_s
                     if $player[:hp] <= 0
                         puts "Player Died"
                         puts defeat
+                        first_battle = false
+                        dungeon = false
                         break
                     end
                 end    
