@@ -399,7 +399,7 @@ enter_dungeon = gets.chomp.to_s
                         end
                     
                         if $monsters[1][:hp] > 0
-                        puts "Skeleton Archer: Take this human! Rotten Breathe!".red
+                        puts "Skeleton Archer: Arrow Barrage!!!!!!!!".red
                         new_line
                         puts "Player recieved damaged".green
                         $player[:hp] = $player[:hp] - $monsters[1][:dmg]
@@ -417,12 +417,12 @@ enter_dungeon = gets.chomp.to_s
                             break
                         end
 
-                end
+                end0
             elsif battle == 1 and job == 2
                 while battle_aco
                 new_line
                 puts "Skeleton Archer HP: " + "#{$monsters[1][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
-                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                print "Please Select skill to use: 1 = Holy Light | 2 = Magnus: "
                 skill = gets.chomp.to_i
                     if skill == 1
                         new_line
@@ -441,7 +441,7 @@ enter_dungeon = gets.chomp.to_s
                     end
                 
                     if $monsters[1][:hp] > 0
-                    puts "Ghoul: Take this human! Rotten Breathe!".red
+                    puts "Ghoul: Arrow Barrage!!!!!!!!".red
                     new_line
                     puts "Player recieved damaged".green
                     $player[:hp] = $player[:hp] - $monsters[1][:dmg]
@@ -464,17 +464,17 @@ enter_dungeon = gets.chomp.to_s
                 while battle_arch
                 new_line
                 puts "Skeleton Archer HP: " + "#{$monsters[1][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
-                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                print "Please Select skill to use: 1 = Double Strafe | 2 = Charge Arrow: "
                 skill = gets.chomp.to_i
                     if skill == 1
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[1][:hp] = $monsters[1][:hp] - $archer_skill[:holy_light]
+                        $monsters[1][:hp] = $monsters[1][:hp] - $archer_skill[:doube_strafe]
                         new_line
                     elsif skill == 2
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[1][:hp] = $monsters[1][:hp] - $archer_skill[:magnus]
+                        $monsters[1][:hp] = $monsters[1][:hp] - $archer_skill[:charge_arrow]
                         new_line
                     else
                         new_line
@@ -483,7 +483,7 @@ enter_dungeon = gets.chomp.to_s
                     end
                 
                     if $monsters[1][:hp] > 0
-                    puts "Skeleton Archer: Take this human! Rotten Breathe!".red
+                    puts "Skeleton Archer: Arrow Barrage!!!!!!!!".red
                     new_line
                     puts "Player recieved damaged".green
                     $player[:hp] = $player[:hp] - $monsters[1][:dmg]
@@ -549,7 +549,7 @@ enter_dungeon = gets.chomp.to_s
         end
 
         while third_battle #----- Start third battle -----###
-            puts "Lord Baphomet: My turn human, let me shower you with my arrows!".red
+            puts "Lord Baphomet: You dare challenge me human! Die....!".red
             if battle == 1 and job == 1
                 while battle_sword
                     new_line
@@ -573,7 +573,7 @@ enter_dungeon = gets.chomp.to_s
                         end
                     
                         if $monsters[2][:hp] > 0
-                        puts "Lord Baphomet: Take this human! Rotten Breathe!".red
+                        puts "Lord Baphomet: Earth Shaker Strike!!!".red
                         new_line
                         puts "Player recieved damaged".green
                         $player[:hp] = $player[:hp] - $monsters[2][:dmg]
