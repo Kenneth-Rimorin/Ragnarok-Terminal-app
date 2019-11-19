@@ -14,6 +14,7 @@ battle_aco = true
 battle_arch = true
 first_battle = true
 second_battle = true
+third_battle = true
 $inventory = true
 #---VARIABLES----#
 $firsthp = 12
@@ -74,18 +75,24 @@ def fir_stage
     victory = Artii::Base.new :font => 'slant'
     puts victory.asciify('FIRST WAVE CLEAR').colorize(:white)
 end
+def sec_stage
+    victory = Artii::Base.new :font => 'slant'
+    puts victory.asciify('FIRST WAVE CLEAR').colorize(:white)
+end
 def view_inventory
     print "Warning! Player's hp is low use @items : ".magenta
     open_inventory = gets.chomp
+    new_line
     if open_inventory == "@items"
         while $inventory
         puts usable
-        print "Select which one you would like to use: close = close inventory: ".magenta
+        print "Select : apple | close : ".magenta
         usable = gets.chomp.to_s
+        new_line
             if usable == "apple" and $player[:hp] < $firsthp
                 $player[:hp] += 1
                 $usable_item[:apple] -= 1
-                puts "You've been healed current HP now is #{$player[:hp]}".green
+                puts "You've been healed current HP now is #{$player[:hp]}/12".green
             elsif usable == "close"
                 $inventory = false
                 $warning = false
@@ -241,17 +248,17 @@ enter_dungeon = gets.chomp.to_s
                 while battle_aco
                 new_line
                 puts "Ghoul HP: " + "#{$monsters[0][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
-                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                print "Please Select skill to use: 1 = Holy Light | 2 = Magnus: "
                 skill = gets.chomp.to_i
                     if skill == 1
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:holy_light]
+                        $monsters[0][:hp] = $monsters[0][:hp] - $acolyte_skill[:holy_light]
                         new_line
                     elsif skill == 2
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:magnus]
+                        $monsters[0][:hp] = $monsters[0][:hp] - $acolyte_skill[:magnus]
                         new_line
                     else
                         new_line
@@ -280,17 +287,17 @@ enter_dungeon = gets.chomp.to_s
                 while battle_arch
                 new_line
                 puts "Ghoul HP: " + "#{$monsters[0][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
-                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                print "Please Select skill to use: 1 = Double Strafe | 2 = Charge Arrow: "
                 skill = gets.chomp.to_i
                     if skill == 1
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:doube_strafe]
+                        $monsters[0][:hp] = $monsters[0][:hp] - $archer_skill[:doube_strafe]
                         new_line
                     elsif skill == 2
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[0][:hp] = $monsters[0][:hp] - $swordsman_skill[:charge_arrow]
+                        $monsters[0][:hp] = $monsters[0][:hp] - $archer_skill[:charge_arrow]
                         new_line
                     else
                         new_line
@@ -353,11 +360,12 @@ enter_dungeon = gets.chomp.to_s
 
         end ###----- End of first battle ----- ###
 
-        puts "Current hp is #{$player[:hp]}"
+        
 
         if $player[:hp] <=0
             next
         else
+            puts "Current hp is #{$player[:hp]}/12"
             new_line
             puts view_inventory
         end
@@ -398,6 +406,7 @@ enter_dungeon = gets.chomp.to_s
                         if $player[:hp] <= 0
                             puts "Player Died"
                             puts defeat
+                            battle_sword = false
                             first_battle = false
                             second_battle = false
                             dungeon = false
@@ -405,9 +414,301 @@ enter_dungeon = gets.chomp.to_s
                         end
 
                 end
+            elsif battle == 1 and job == 2
+                while battle_aco
+                new_line
+                puts "Skeleton Archer HP: " + "#{$monsters[1][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                skill = gets.chomp.to_i
+                    if skill == 1
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[1][:hp] = $monsters[1][:hp] - $acolyte_skill[:holy_light]
+                        new_line
+                    elsif skill == 2
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[1][:hp] = $monsters[1][:hp] - $acolyte_skill[:magnus]
+                        new_line
+                    else
+                        new_line
+                        puts "No Skill Selected, You missed."
+                        new_line
+                    end
+                
+                    if $monsters[1][:hp] > 0
+                    puts "Ghoul: Take this human! Rotten Breathe!".red
+                    new_line
+                    puts "Player recieved damaged".green
+                    $player[:hp] = $player[:hp] - $monsters[1][:dmg]
+                    else
+                            break
+                    end    
+
+                    if $player[:hp] <= 0
+                        puts "Player Died"
+                        puts defeat
+                        battle_aco = false
+                        first_battle = false
+                        second_battle = false
+                        dungeon = false
+                        break
+                    end
+                end
+            
+            elsif battle == 1 and job == 3
+                while battle_arch
+                new_line
+                puts "Skeleton Archer HP: " + "#{$monsters[1][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                skill = gets.chomp.to_i
+                    if skill == 1
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[1][:hp] = $monsters[1][:hp] - $archer_skill[:holy_light]
+                        new_line
+                    elsif skill == 2
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[1][:hp] = $monsters[1][:hp] - $archer_skill[:magnus]
+                        new_line
+                    else
+                        new_line
+                        puts "No Skill Selected, You missed."
+                        new_line
+                    end
+                
+                    if $monsters[1][:hp] > 0
+                    puts "Skeleton Archer: Take this human! Rotten Breathe!".red
+                    new_line
+                    puts "Player recieved damaged".green
+                    $player[:hp] = $player[:hp] - $monsters[1][:dmg]
+                    else
+                            break
+                    end    
+
+                    if $player[:hp] <= 0
+                        puts "Player Died"
+                        puts defeat
+                        battle_aco = false
+                        first_battle = false
+                        second_battle = false
+                        dungeon = false
+                        break
+                    end
+                end
             end
 
+            if $monsters[0][:hp] <= 0 
+                puts "Skeleton Archer: Ouuucchh...".red
+                new_line
+                puts "Monster died"
+                new_line
+                puts "100% experience gained".green
+                puts "Apple x 10 Obtained".green
+                $usable_item[:apple] += 10
+                $player[:exp] += 100
+                second_battle = false
+            end
+
+            if $player[:exp] == 200
+                puts "LEVEL UP! Congratulations you are now level 3 ".green
+                puts "Hitpoint increased by 5".green
+                $player[:hp] += 5
+                first_battle = false
+                if job == 1
+                    puts "Bash & Magnum Break skills increased damage by 1".green
+                    $swordsman_skill[:bash] += 1
+                    $swordsman_skill[:magnum_break] += 1
+                elsif job == 2
+                    puts "Holy Light & Magnus skills increased damage by 1".green
+                    $acolyte_skill[:holy_light] += 1
+                    $acolyte_skill[:magnus] += 1
+                elsif job ==3
+                    puts "Double Strafe & Charge Arrow increased damage by 1".green
+                    $archer_skill[:doube_strafe] += 1
+                    $archer_skill[:charge_arrow] += 1
+                end
+                new_line
+                puts sec_stage
+            end
+
+        end #------End of second battle ------ #
+
+        if $player[:hp] <=0
+            next
+        else
+            puts "Current hp is #{$player[:hp]}/17"
+            new_line
+            puts view_inventory
         end
+
+        while third_battle #----- Start third battle -----###
+            puts "Lord Baphomet: My turn human, let me shower you with my arrows!".red
+            if battle == 1 and job == 1
+                while battle_sword
+                    new_line
+                    puts "Lord Baphomet HP: " + "#{$monsters[2][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                    print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                    skill = gets.chomp.to_i
+                        if skill == 1
+                            new_line
+                            puts "Monster received damaged".green
+                            $monsters[2][:hp] = $monsters[2][:hp] - $swordsman_skill[:bash]
+                            new_line
+                        elsif skill == 2
+                            new_line
+                            puts "Monster received damaged".green
+                            $monsters[2][:hp] = $monsters[2][:hp] - $swordsman_skill[:magnum_break]
+                            new_line
+                        else
+                            new_line
+                            puts "No Skill Selected, You missed."
+                            new_line
+                        end
+                    
+                        if $monsters[2][:hp] > 0
+                        puts "Lord Baphomet: Take this human! Rotten Breathe!".red
+                        new_line
+                        puts "Player recieved damaged".green
+                        $player[:hp] = $player[:hp] - $monsters[2][:dmg]
+                        else
+                                break
+                        end    
+
+                        if $player[:hp] <= 0
+                            puts "Player Died"
+                            puts defeat
+                            battle_sword = false
+                            first_battle = false
+                            second_battle = false
+                            dungeon = false
+                            break
+                        end
+
+                end
+            elsif battle == 1 and job == 2
+                while battle_aco
+                new_line
+                puts "Lord Baphomet HP: " + "#{$monsters[2][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                skill = gets.chomp.to_i
+                    if skill == 1
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[2][:hp] = $monsters[2][:hp] - $acolyte_skill[:holy_light]
+                        new_line
+                    elsif skill == 2
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[2][:hp] = $monsters[2][:hp] - $acolyte_skill[:magnus]
+                        new_line
+                    else
+                        new_line
+                        puts "No Skill Selected, You missed."
+                        new_line
+                    end
+                
+                    if $monsters[1][:hp] > 0
+                    puts "Ghoul: Take this human! Rotten Breathe!".red
+                    new_line
+                    puts "Player recieved damaged".green
+                    $player[:hp] = $player[:hp] - $monsters[2][:dmg]
+                    else
+                            break
+                    end    
+
+                    if $player[:hp] <= 0
+                        puts "Player Died"
+                        puts defeat
+                        battle_aco = false
+                        first_battle = false
+                        second_battle = false
+                        dungeon = false
+                        break
+                    end
+                end
+            
+            elsif battle == 1 and job == 3
+                while battle_arch
+                new_line
+                puts "Lord Baphomet HP: " + "#{$monsters[2][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
+                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                skill = gets.chomp.to_i
+                    if skill == 1
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[2][:hp] = $monsters[2][:hp] - $archer_skill[:holy_light]
+                        new_line
+                    elsif skill == 2
+                        new_line
+                        puts "Monster received damaged".green
+                        $monsters[2][:hp] = $monsters[2][:hp] - $archer_skill[:magnus]
+                        new_line
+                    else
+                        new_line
+                        puts "No Skill Selected, You missed."
+                        new_line
+                    end
+                
+                    if $monsters[1][:hp] > 0
+                    puts "Lord Baphomet: Take this human! Rotten Breathe!".red
+                    new_line
+                    puts "Player recieved damaged".green
+                    $player[:hp] = $player[:hp] - $monsters[2][:dmg]
+                    else
+                            break
+                    end    
+
+                    if $player[:hp] <= 0
+                        puts "Player Died"
+                        puts defeat
+                        battle_aco = false
+                        first_battle = false
+                        second_battle = false
+                        dungeon = false
+                        break
+                    end
+                end
+            end
+
+            if $monsters[2][:hp] <= 0 
+                puts "Skeleton Archer: Ouuucchh...".red
+                new_line
+                puts "Monster died"
+                new_line
+                puts "100% experience gained".green
+                puts "Apple x 10 Obtained".green
+                $usable_item[:apple] += 10
+                $player[:exp] += 100
+                second_battle = false
+            end
+
+            if $player[:exp] == 200
+                puts "LEVEL UP! Congratulations you are now level 3 ".green
+                puts "Hitpoint increased by 5".green
+                $player[:hp] += 5
+                first_battle = false
+                if job == 1
+                    puts "Bash & Magnum Break skills increased damage by 1".green
+                    $swordsman_skill[:bash] += 1
+                    $swordsman_skill[:magnum_break] += 1
+                elsif job == 2
+                    puts "Holy Light & Magnus skills increased damage by 1".green
+                    $acolyte_skill[:holy_light] += 1
+                    $acolyte_skill[:magnus] += 1
+                elsif job ==3
+                    puts "Double Strafe & Charge Arrow increased damage by 1".green
+                    $archer_skill[:doube_strafe] += 1
+                    $archer_skill[:charge_arrow] += 1
+                end
+                new_line
+                puts fir_stage
+            end
+
+        end #------End of third battle ------ #
+
+
         
         end
     end
