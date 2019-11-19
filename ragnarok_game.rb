@@ -77,7 +77,11 @@ def fir_stage
 end
 def sec_stage
     victory = Artii::Base.new :font => 'slant'
-    puts victory.asciify('FIRST WAVE CLEAR').colorize(:white)
+    puts victory.asciify('SECOND WAVE CLEAR').colorize(:white)
+end
+def third_stage
+    victory = Artii::Base.new :font => 'slant'
+    puts victory.asciify('THIRD WAVE CLEAR').colorize(:white)
 end
 def view_inventory
     print "Warning! Player's hp is low use @items : ".magenta
@@ -499,7 +503,7 @@ enter_dungeon = gets.chomp.to_s
                 end
             end
 
-            if $monsters[0][:hp] <= 0 
+            if $monsters[1][:hp] <= 0 
                 puts "Skeleton Archer: Ouuucchh...".red
                 new_line
                 puts "Monster died"
@@ -540,6 +544,7 @@ enter_dungeon = gets.chomp.to_s
         else
             puts "Current hp is #{$player[:hp]}/17"
             new_line
+            $inventory = true
             puts view_inventory
         end
 
@@ -673,7 +678,7 @@ enter_dungeon = gets.chomp.to_s
             end
 
             if $monsters[2][:hp] <= 0 
-                puts "Skeleton Archer: Ouuucchh...".red
+                puts "Lord Baphomet: NNNNNNNNNNNNNNNNNNNNNNOOOOOOOOOOOOOOooooooooooooooooooooooooooooooooooooooooo!!!!!!!!...".red
                 new_line
                 puts "Monster died"
                 new_line
@@ -703,7 +708,7 @@ enter_dungeon = gets.chomp.to_s
                     $archer_skill[:charge_arrow] += 1
                 end
                 new_line
-                puts fir_stage
+                puts third_stage
             end
 
         end #------End of third battle ------ #
