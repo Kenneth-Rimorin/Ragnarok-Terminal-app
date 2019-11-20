@@ -16,6 +16,7 @@ first_battle = true
 second_battle = true
 third_battle = true
 $inventory = true
+continue_game = true
 #---VARIABLES----#
 $firsthp = 12
 
@@ -101,11 +102,24 @@ def view_inventory
                 $inventory = false
                 $warning = false
             end    
+
         end
 
     end 
+
+end
+def continue
+    puts "Do you want to play again?: Y/N"
+    continue_input = gets.chomp.upcase
+    if continue_input == "Y"
+
+    else
+        thanks = Artii::Base.new :font => 'slant'
+        puts thanks.asciify('THANK YOU').colorize(:white)
+    end
 end
 new_line
+while continue_game
 while input_name
     print "Please enter name: "
     name = gets.chomp.to_s
@@ -417,7 +431,7 @@ enter_dungeon = gets.chomp.to_s
                             break
                         end
 
-                end0
+                end
             elsif battle == 1 and job == 2
                 while battle_aco
                 new_line
@@ -586,6 +600,7 @@ enter_dungeon = gets.chomp.to_s
                             puts defeat
                             battle_sword = false
                             first_battle = false
+                            third_battle = false
                             second_battle = false
                             dungeon = false
                             break
@@ -596,7 +611,7 @@ enter_dungeon = gets.chomp.to_s
                 while battle_aco
                 new_line
                 puts "Lord Baphomet HP: " + "#{$monsters[2][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
-                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                print "Please Select skill to use: 1 = Holy light | 2 = Magnus: "
                 skill = gets.chomp.to_i
                     if skill == 1
                         new_line
@@ -628,6 +643,7 @@ enter_dungeon = gets.chomp.to_s
                         puts defeat
                         battle_aco = false
                         first_battle = false
+                        third_battle = false
                         second_battle = false
                         dungeon = false
                         break
@@ -638,7 +654,7 @@ enter_dungeon = gets.chomp.to_s
                 while battle_arch
                 new_line
                 puts "Lord Baphomet HP: " + "#{$monsters[2][:hp]} | #{battle_name} HP: " + "#{$player[:hp]} "
-                print "Please Select skill to use: 1 = Bash | 2 = Magnum Break: "
+                print "Please Select skill to use: 1 = Double Strafe | 2 = Charge Arrow: "
                 skill = gets.chomp.to_i
                     if skill == 1
                         new_line
@@ -671,7 +687,10 @@ enter_dungeon = gets.chomp.to_s
                         battle_aco = false
                         first_battle = false
                         second_battle = false
+                        third_battle = false
                         dungeon = false
+                        new_line
+                        
                         break
                     end
                 end
@@ -689,7 +708,7 @@ enter_dungeon = gets.chomp.to_s
                 second_battle = false
             end
 
-            if $player[:exp] == 200
+            if $player[:exp] == 300
                 puts "LEVEL UP! Congratulations you are now level 3 ".green
                 puts "Hitpoint increased by 5".green
                 $player[:hp] += 5
@@ -712,8 +731,8 @@ enter_dungeon = gets.chomp.to_s
             end
 
         end #------End of third battle ------ #
-
+        end
 
         
-        end
     end
+end
