@@ -112,6 +112,7 @@ def continue
     puts "Do you want to play again?: Y/N"
     continue_input = gets.chomp.upcase
     if continue_input == "Y"
+        
 
     else
         thanks = Artii::Base.new :font => 'slant'
@@ -119,7 +120,7 @@ def continue
     end
 end
 new_line
-while continue_game
+# while continue_game
 while input_name
     print "Please enter name: "
     name = gets.chomp.to_s
@@ -735,4 +736,4 @@ enter_dungeon = gets.chomp.to_s
 
         
     end
-end
+# end
