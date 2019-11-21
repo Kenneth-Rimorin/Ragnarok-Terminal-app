@@ -84,7 +84,7 @@ def sec_stage
 end
 def third_stage
     victory = Artii::Base.new :font => 'slant'
-    puts victory.asciify('THIRD WAVE CLEAR').colorize(:white)
+    puts victory.asciify('VICTORY').colorize(:white)
 end
 def view_inventory
     print "Warning! Player's hp is low use @items : ".magenta
@@ -632,8 +632,8 @@ enter_dungeon = gets.chomp.to_s
                         new_line
                     end
                 
-                    if $monsters[1][:hp] > 0
-                    puts "Ghoul: Take this human! Rotten Breathe!".red
+                    if $monsters[2][:hp] > 0
+                    puts "Lord Baphomet: Earth Shaker Strike!!!".red
                     new_line
                     puts "Player recieved damaged".green
                     $player[:hp] = $player[:hp] - $monsters[2][:dmg]
@@ -675,8 +675,8 @@ enter_dungeon = gets.chomp.to_s
                         new_line
                     end
                 
-                    if $monsters[1][:hp] > 0
-                    puts "Lord Baphomet: Take this human! Rotten Breathe!".red
+                    if $monsters[2][:hp] > 0
+                    puts "Lord Baphomet: Earth Shaker Strike!!!".red
                     new_line
                     puts "Player recieved damaged".green
                     $player[:hp] = $player[:hp] - $monsters[2][:dmg]
@@ -709,6 +709,9 @@ enter_dungeon = gets.chomp.to_s
                 $usable_item[:apple] += 10
                 $player[:exp] += 100
                 second_battle = false
+                third_battle = false
+                dungeon = false
+                game_on = false
             end
 
             if $player[:exp] == 300
@@ -738,7 +741,7 @@ enter_dungeon = gets.chomp.to_s
 
        
     end
-    if $player[:hp] <= 0
+    if $player[:hp] <= 0 or $monsters[2][:hp] <= 0 
         new_line
         print "Do you want to play again? Y/N: "
         play_again = gets.chomp.upcase
