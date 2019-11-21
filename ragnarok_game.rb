@@ -17,11 +17,13 @@ second_battle = true
 third_battle = true
 $inventory = true
 continue_game = true
+game_on = true
 #---VARIABLES----#
 $firsthp = 12
+$secondhp = 17
 
 #---HASHES----#
-$swordsman_skill = {bash:1, magnum_break:3}
+$swordsman_skill = {bash:1, magnum_break:2}
 $acolyte_skill = {holy_light:1, magnus:2}
 $archer_skill = {doube_strafe:1, charge_arrow:2}
 $player = {hp:7, lvl:1, exp:0}
@@ -103,24 +105,24 @@ def view_inventory
                 $warning = false
             end    
 
+            if $player[:exp] == 200
+            
+                if usable == "apple" and $player[:hp] < $secondhp
+                    $player[:hp] += 1
+                    $usable_item[:apple] -= 1
+                    puts "You've been healed current HP now is #{$player[:hp]}/17".green
+                end
+            
+            end
+
         end
 
     end 
 
 end
-def continue
-    puts "Do you want to play again?: Y/N"
-    continue_input = gets.chomp.upcase
-    if continue_input == "Y"
-        
-
-    else
-        thanks = Artii::Base.new :font => 'slant'
-        puts thanks.asciify('THANK YOU').colorize(:white)
-    end
-end
 new_line
 # while continue_game
+while game_on
 while input_name
     print "Please enter name: "
     name = gets.chomp.to_s
@@ -734,6 +736,46 @@ enter_dungeon = gets.chomp.to_s
         end #------End of third battle ------ #
         end
 
-        
+       
     end
-# end
+    if $player[:hp] <= 0
+        new_line
+        print "Do you want to play again? Y/N: "
+        play_again = gets.chomp.upcase
+        new_line
+        if play_again == "Y"
+            dungeon = true
+            first_battle = true
+            battle_sword = true
+            battle_aco = true
+            battle_arch = true
+            $usable_item[:apple] = 0
+            $monsters[0][:hp] = 7
+            $player[:hp] = 7
+            $player[:lvl] = 1
+            $player[:exp] = 0
+            $swordsman_skill[:bash] = 1
+            $swordsman_skill[:magnum_break] = 2
+            $acolyte_skill[:holy_light] = 1
+            $acolyte_skill[:magnus] = 2
+            $archer_skill[:doube_strafe] = 1
+            $archer_skill[:charge_arrow] = 2
+            second_battle = true
+            battle_sword = true
+            battle_aco = true
+            battle_arch = true
+            $monsters[1][:hp] = 9
+            third_battle = true
+            battle_sword = true
+            battle_aco = true
+            battle_arch = true
+            $monsters[1][:hp] = 9
+
+        else
+            thanks = Artii::Base.new :font => 'slant'
+            puts thanks.asciify('THANK YOU FOR PLAYING').colorize(:white)
+            game_on = false
+
+        end
+    end
+ end
