@@ -18,7 +18,8 @@ third_battle = true
 $inventory = true
 continue_game = true
 game_on = true
-#---VARIABLES----#
+do_again = true
+#---VARIABLES----# 
 $firsthp = 12
 $secondhp = 17
 
@@ -96,6 +97,7 @@ def view_inventory
         print "Select : apple | close : ".magenta
         usable = gets.chomp.to_s
         new_line
+        if $player[:exp] == 100
             if usable == "apple" and $player[:hp] < $firsthp
                 $player[:hp] += 1
                 $usable_item[:apple] -= 1
@@ -105,12 +107,16 @@ def view_inventory
                 $warning = false
             end    
 
-            if $player[:exp] == 200
+        elsif $player[:exp] == 200
             
                 if usable == "apple" and $player[:hp] < $secondhp
                     $player[:hp] += 1
                     $usable_item[:apple] -= 1
                     puts "You've been healed current HP now is #{$player[:hp]}/17".green
+                elsif usable == "close"
+                    $inventory = false
+                    $warning = false
+                
                 end
             
             end
@@ -211,14 +217,14 @@ enter_dungeon = gets.chomp.to_s
     new_line
     puts dungeon_art
     new_line
+    puts "Dungeon Monsters "
+    puts monster_view
     enter=gets
     puts "LORD BAPHOMET: HOW DARE YOU ENTER MY LAIR HUMAN!".red
     puts "LORD BAPHOMET: I AM BAPHOMET THE RULER OF THIS DUNGEON...".red
     puts "LORD BAPHOMET: ATTTTAAAACCCCKKK!!!!!!!".red
     enter=gets
-    puts "Dungeon Monsters "
     new_line
-    puts monster_view
     puts fight_display
     puts "Ghoul: Too late for you Human! I'm gonna kill you now!".red
     enter=gets
@@ -662,12 +668,12 @@ enter_dungeon = gets.chomp.to_s
                     if skill == 1
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[2][:hp] = $monsters[2][:hp] - $archer_skill[:holy_light]
+                        $monsters[2][:hp] = $monsters[2][:hp] - $archer_skill[:doube_strafe]
                         new_line
                     elsif skill == 2
                         new_line
                         puts "Monster received damaged".green
-                        $monsters[2][:hp] = $monsters[2][:hp] - $archer_skill[:magnus]
+                        $monsters[2][:hp] = $monsters[2][:hp] - $archer_skill[:charge_arrow]
                         new_line
                     else
                         new_line
@@ -704,36 +710,18 @@ enter_dungeon = gets.chomp.to_s
                 new_line
                 puts "Monster died"
                 new_line
-                puts "100% experience gained".green
-                puts "Apple x 10 Obtained".green
-                $usable_item[:apple] += 10
-                $player[:exp] += 100
                 second_battle = false
                 third_battle = false
                 dungeon = false
                 game_on = false
-            end
-
-            if $player[:exp] == 300
-                puts "LEVEL UP! Congratulations you are now level 3 ".green
-                puts "Hitpoint increased by 5".green
-                $player[:hp] += 5
-                first_battle = false
-                if job == 1
-                    puts "Bash & Magnum Break skills increased damage by 1".green
-                    $swordsman_skill[:bash] += 1
-                    $swordsman_skill[:magnum_break] += 1
-                elsif job == 2
-                    puts "Holy Light & Magnus skills increased damage by 1".green
-                    $acolyte_skill[:holy_light] += 1
-                    $acolyte_skill[:magnus] += 1
-                elsif job ==3
-                    puts "Double Strafe & Charge Arrow increased damage by 1".green
-                    $archer_skill[:doube_strafe] += 1
-                    $archer_skill[:charge_arrow] += 1
-                end
                 new_line
+                puts "All monsters have been defeated. Prontera Dungeon have been sealed!"
                 puts third_stage
+                #--Loading
+                new_line
+                name = ProgressBar.create(:total =>array.size)
+                array.each {name.increment;sleep 0.001}
+                #--Loading
             end
 
         end #------End of third battle ------ #
@@ -741,44 +729,49 @@ enter_dungeon = gets.chomp.to_s
 
        
     end
-    if $player[:hp] <= 0 or $monsters[2][:hp] <= 0 
-        new_line
-        print "Do you want to play again? Y/N: "
-        play_again = gets.chomp.upcase
-        new_line
-        if play_again == "Y"
-            dungeon = true
-            first_battle = true
-            battle_sword = true
-            battle_aco = true
-            battle_arch = true
-            $usable_item[:apple] = 0
-            $monsters[0][:hp] = 7
-            $player[:hp] = 7
-            $player[:lvl] = 1
-            $player[:exp] = 0
-            $swordsman_skill[:bash] = 1
-            $swordsman_skill[:magnum_break] = 2
-            $acolyte_skill[:holy_light] = 1
-            $acolyte_skill[:magnus] = 2
-            $archer_skill[:doube_strafe] = 1
-            $archer_skill[:charge_arrow] = 2
-            second_battle = true
-            battle_sword = true
-            battle_aco = true
-            battle_arch = true
-            $monsters[1][:hp] = 9
-            third_battle = true
-            battle_sword = true
-            battle_aco = true
-            battle_arch = true
-            $monsters[1][:hp] = 9
+    while do_again
+        if $player[:hp] <= 0 or $monsters[2][:hp] <= 0 
+            new_line
+            print "Do you want to play again? Y/N: "
+            play_again = gets.chomp.upcase
+            new_line
+            if play_again == "Y"
+                dungeon = true
+                first_battle = true
+                battle_sword = true
+                battle_aco = true
+                battle_arch = true
+                $usable_item[:apple] = 0
+                $monsters[0][:hp] = 7
+                $player[:hp] = 7
+                $player[:lvl] = 1
+                $player[:exp] = 0
+                $swordsman_skill[:bash] = 1
+                $swordsman_skill[:magnum_break] = 2
+                $acolyte_skill[:holy_light] = 1
+                $acolyte_skill[:magnus] = 2
+                $archer_skill[:doube_strafe] = 1
+                $archer_skill[:charge_arrow] = 2
+                second_battle = true
+                battle_sword = true
+                battle_aco = true
+                battle_arch = true
+                $monsters[1][:hp] = 9
+                third_battle = true
+                battle_sword = true
+                battle_aco = true
+                battle_arch = true
+                $monsters[1][:hp] = 9
+                do_again = false
+            elsif play_again == "N"
+                thanks = Artii::Base.new :font => 'slant'
+                puts thanks.asciify('THANK YOU FOR PLAYING').colorize(:white)
+                game_on = false
+                break
 
-        else
-            thanks = Artii::Base.new :font => 'slant'
-            puts thanks.asciify('THANK YOU FOR PLAYING').colorize(:white)
-            game_on = false
+            else
 
+            end
         end
-    end
+    end   
  end
