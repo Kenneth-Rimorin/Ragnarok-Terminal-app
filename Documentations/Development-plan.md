@@ -78,4 +78,25 @@ keys or pick a different option that were not displayed the screen.
 
 # Implementation Plan
 I have used a software management tool Trello to do my step by step implementation plan.
-here is the link to my trello : [Here](https://trello.com/b/t3lYS9XJ/ragnarok-game)
+here is the link to my trello [Here](https://trello.com/b/t3lYS9XJ/ragnarok-game)
+
+Below is the attached screenshots of each implementation phase.
+
+Phase One
+![Trello1](/Documentations/ImplementationPlan_Images/1.jpg)
+Phase two
+![Trello1](/Documentations/ImplementationPlan_Images/2.jpg)
+Phase three
+![Trello1](/Documentations/ImplementationPlan_Images/3.jpg)
+Phase Four
+![Trello1](/Documentations/ImplementationPlan_Images/4.jpg)
+Phase five
+![Trello1](/Documentations/ImplementationPlan_Images/5.jpg)
+Phase six
+![Trello1](/Documentations/ImplementationPlan_Images/6.jpg)
+Phase seven
+![Trello1](/Documentations/ImplementationPlan_Images/7.jpg)
+Phase eight
+![Trello1](/Documentations/ImplementationPlan_Images/8.jpg)
+Phase nine
+![Trello1](/Documentations/ImplementationPlan_Images/9.jpg)
