@@ -40,5 +40,41 @@ When the
 
 # should allow the user to play again
 
+# User Interaction and Experience
+
+The application is classified as a Role Playing Game (RPG) wherein the player assumes the
+roles of the character they play in a fictional setting. The goal of the game is to hunt and defeat
+the monsters. The controls and features of the game are taught in an understandable story line
+and sequence. The application includes a non-player character that is used to advance the story
+line of the game. Through the command feature of the game, the player could also respond to
+the speech displayed by the NPC.
+
+The program will implement a feature that allows the user to input the name for its player. The
+name has to be at least four characters long, otherwise the application will prompt the same
+question. Another key feature of the game is the Job class selection. The game offers an
+opportunity for the user to choose his desired Job for the character he opt to use. The game
+provides three job options; 1=Swordsman, 2=Acolyte, and 3=Archer. The user has to select
+from 1 to 3, however, if the user is unable to pick a number within that range, the game will not
+proceed.
+
+The application also implements a feature that will allow the user to select the skills for its
+character. Each of the Job classification has particular and distinct set of skills and play style.
+The user has to select between the two skills that are displayed. If the user is unable to pick a
+number between one and two, the game will prompt the same options until the player pressed
+the right option.
+
+The other fun feature of the game is that it also allows the user to type commands. The
+application will prompt the user to input a command in order to proceed.
+
+1. Dungeon system – the user needs to type “@warp” in order to move to the dungeon
+2.  Inventory system- the user needs to type “@items” in order for the player to access its
+
+inventories, e. Apples to boost the HP
+As a general rule, the application will display the same questions if the player press any other
+keys or pick a different option that were not displayed the screen.
+
+# Control Flow Diagram
 ![awawsa](/Documentations/Diagram/RagnarokDiagram.png)
 
+# Implementation Plan
+I used 
