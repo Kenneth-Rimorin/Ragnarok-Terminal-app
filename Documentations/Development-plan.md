@@ -40,5 +40,5 @@ When the
 
 # should allow the user to play again
 
-![picture](./Picture/RagnarokDiagram.png)
+![awawsa](/Documentations/Diagram/RagnarokDiagram.png)
 
