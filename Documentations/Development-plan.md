@@ -77,4 +77,5 @@ keys or pick a different option that were not displayed the screen.
 ![awawsa](/Documentations/Diagram/RagnarokDiagram.png)
 
 # Implementation Plan
-I used 
+I have used a software management tool Trello to do my step by step implementation plan.
+here is the link to my trello : [Here](https://trello.com/b/t3lYS9XJ/ragnarok-game)
