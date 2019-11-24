@@ -1,44 +1,89 @@
 # Statement of Purpose and Scope
+
 ## Application Description
-The application is a role play game which user need to defeat monsters in-order to bring peace to the town and to it's people. The user is ask to input name and select a class job from a Swordsman, Acolyte or Archer which have a different skills, The user then will be warp to the dungeon and start to fight and defeat monster one by one. The monster is going stronger as the level progresses. If the user defeated all the monsters then the game ends and successfully finished the game. otherwise if the player dies it's a game over and ask if the user wants to play again.
+- The application is classified as a Role Playing Game (RPG) wherein the player needs to battle
+against monsters. There is a story line incorporated on the game wherein the monster should
+all be hunted and defeated by the player to bring peace to the town and to its people. The
+structure of the game is quite similar to that of an action type of movie with the idea that the
+user is the main character. At the beginning of the game, the user will be asked to input the
+name of its character and choose a class job. There are three class job options which the user
+can choose from and each of them has distinct battle skills. Using the command feature of the
+game, the user will be teleported to a dungeon where the monsters are located. The same with
+other types of game, the difficulty of defeating the monster will increase as the level
+progresses. Once all the monsters have been defeated the game will declare the user as a
+winner, otherwise if the user’s character dies the game is over and the user shall be notified to
+either play again or quit the game.
 
 ## Problem Statement
-- Games nowadays are very long and hard to play which people tend to just quit without even finishing the game. 
+- Nowadays, the trend of the games could be very long and complicated to play so even if has the
+best graphics some games could not be appealing to some players. Most of the players tend to
+just quit without finishing the game. The idea of the game is to have an interactive game which
+has a plot that will make them spend more time to eventually finish the goal of the game. The
+application is intended for users to explore more the virtual world with full of enjoyment.
+Simple yet entertaining is the key foundation of creating this type of game. 
+
 ## Target Audience
-- The target audience of this application are everyone who can use computer and be able to read the computer screen and people who are bored and want a quick easy and fun role-playing game.
-## How Target Audience will use it
-- 
+- The target audiences of this application are not limited by the gender or age. The application is
+designed to be played not just one time but on a regular basis since this is a game with a movie-
+
+- style plot. The application is user friendly and anyone who can comprehend a storyline and
+could follow commands could play the game. The game is suited for players who are
+who are bored and want a quick easy and fun role-playing game. It is good to have a game
+wherein the player can assume the roles of their own character they play in a fictional setting.
+
 # Features
-## Should display game name
-When the user run the application, is should display the name of the game with ruby-gem artii.
 
-## Should ask and accept user input as as a player game name
-The application should ask the user for the character name and be able to save it
+## Should display game name
+When the user run the application, is should display the name of the game with ru
+by-gem artii.
 
-## Should not accept name less than 4 characters
-Should ask the user again to input name until name is 4 characters longer.
+## Should ask and accept user input as as a player game name
+The application should ask the user for the character name and be able to save it.
 
-## Should be able to select class job
-Should the user be able to select between Swordsman, Acolyte or Archer
+## Should not accept name less than four characters
+The application should ask the user again to input name until name is four
+characters long.
 
-## Should display the progressbar
-Should be able to diplay a progressbar 
+## Should be able to select class job
+The user should be able to choose between the class job
+listed; Swordsman, Acolyte or Archer.
 
-## Should Display list of monster and there attributes
-When the user enter the dungeon it should display the list of the monsters and its attributes
+## Should display the progress bar
+The application should be able to display a progress bar once the user
+successfully created its character and upon entering the Dungeon.
 
-## should damage monster
-When the 
+## Should Display list of monster and there attributes
+Once the user
+enter the Dungeon it should display the list of the monsters and its
+corresponding attributes.
 
-## should monster damage player
+## Should damage monster
+Upon selecting the skill of the character, the monster should receive damage from
+the user based on the skill selected. If the user was unable to pick any skill
+from the options, the monster would not incur any damage.
 
-# Should use access and use item in inventory
+## Should monster damage player
+The monster should be able to attack back the user’s character after the player’s
+turn.
 
-# should move to the next monster if mosnter is killed
+## Should display and access the items in inventory
+After the user defeats the monster a warning prompt will be displayed indicating
+low Hit-Point which gives the user an option to access the inventory by typing
+the command “@items”. Inventory includes an Apple that will restore players Hit-
+Points by one per apple.
 
-# should determine if the user is won
+## Should move to the next monster if the current monster is defeated
+After defeating a monster on the first level, the application will automatically
+move the user’s character to the next monster.
 
-# should allow the user to play again
+## Should determine the winner of each battle
+The application should display whether the user won the match against the monster
+or otherwise.
+
+## Should allow the user to play again
+After displaying the result of the gameplay, the application should display a
+Yes-or-No option for the user whether to play again the game or not.
+
 
 # User Interaction and Experience
 
@@ -78,7 +123,7 @@ keys or pick a different option that were not displayed the screen.
 
 # Implementation Plan
 I have used a software management tool Trello to do my step by step implementation plan.
-here is the link to my trello [Here](https://trello.com/b/t3lYS9XJ/ragnarok-game)
+[Here](https://trello.com/b/t3lYS9XJ/ragnarok-game) is the link to my trello 
 
 Below is the attached screenshots of each implementation phase.
 
