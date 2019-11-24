@@ -33,3 +33,42 @@ The application is a role play game which user need to defeat monsters in-order 
 ```
 On the Terminal, type the command "Gem install Bundler"
 ```
+6. 
+6. Install depencies (Ruby Gems)
+- Colorize
+```
+On the Terminal, type the command "Gem install colorize"
+```
+- artii
+```
+On the Terminal, type the command "Gem install artii"
+```
+- Progressbar
+```
+On the Terminal, type the command "Gem install ruby-progressbar"
+```
+0r
+```
+On the Terminal, type the command "bundle install" to install all dependencies
+```
+
+# Run Application
+- In the terminal run bash script file named "Ragnarok.sh"
+```
+type the command "bash Ragnarok.sh"
+```
+or
+
+```
+type the command "ruby ragnarok_game.rb"
+```
+
+# Features
+
+1. Name should be four letters or longer, the application will not accept if the user input is less than 3 letters.
+
+2. Class job selection, one for Swordsman, two for Acolyte and three for Archer. The application will not proceed if the user input is not among the selections and prompts the user to input again.
+
+3. The user wil be able to access inventory and use items once the monster is defeated or killed.
+
+4. The user will ask to play again once all the monster is successfully defeated or killed and when the player dies.
